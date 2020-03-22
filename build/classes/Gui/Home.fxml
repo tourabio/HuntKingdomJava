@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
+   <children>
+      <Pane opacity="0.3" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: black;" />
+      <ImageView fx:id="img" fitHeight="768.0" fitWidth="1366.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../Uploads/back.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="mainpane" layoutX="279.0" layoutY="68.0" prefHeight="686.0" prefWidth="1075.0" />
+      <Button fx:id="btnanimals" layoutX="80.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnanimalsAction" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: none;" />
+      <Button fx:id="btnevents" layoutX="80.0" layoutY="375.0" mnemonicParsing="false" onAction="#btneventsAction" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: none;" />
+      <Button fx:id="btnshop" layoutX="80.0" layoutY="318.0" mnemonicParsing="false" onAction="#btnshopAction" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: none;" />
+      <Button fx:id="btnhome" layoutX="80.0" layoutY="262.0" mnemonicParsing="false" onAction="#btnhomeAction" prefHeight="36.0" prefWidth="124.0" style="-fx-background-color: none;" />
+      <Button fx:id="btnservices" layoutX="71.0" layoutY="496.0" mnemonicParsing="false" onAction="#btnservicesAction" prefHeight="36.0" prefWidth="140.0" style="-fx-background-color: none;" />
+      <Button fx:id="btntraining" layoutX="72.0" layoutY="546.0" mnemonicParsing="false" onAction="#btntrainingAction" prefHeight="36.0" prefWidth="140.0" style="-fx-background-color: none;" />
+      <Button fx:id="btnreparation" layoutX="50.0" layoutY="606.0" mnemonicParsing="false" onAction="#btnreparationAction" prefHeight="36.0" prefWidth="188.0" style="-fx-background-color: none;" />
+   </children>
+</AnchorPane>
