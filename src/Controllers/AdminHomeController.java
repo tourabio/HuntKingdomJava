@@ -22,7 +22,7 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author tibh
  */
-public class HomeController implements Initializable {
+public class AdminHomeController implements Initializable {
 
     @FXML
     private AnchorPane mainpane;
@@ -50,12 +50,12 @@ public class HomeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        img.setImage(new Image("/Uploads/2.jpg"));
+        img.setImage(new Image("/Uploads/dash.jpg"));
     }    
 
     @FXML
     private void btnanimalsAction(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/Gui/Animals.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/Gui/ListAnimalAdmin.fxml"));
         mainpane.getChildren().setAll(pane);
     }
 
