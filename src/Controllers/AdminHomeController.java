@@ -12,10 +12,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -67,8 +70,9 @@ public class AdminHomeController implements Initializable {
 
     @FXML
     private void btnshopAction(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/Gui/Shop.fxml"));
+      AnchorPane pane = FXMLLoader.load(getClass().getResource("/Gui/Shop.fxml"));
         mainpane.getChildren().setAll(pane);
+        
     }
 
     @FXML

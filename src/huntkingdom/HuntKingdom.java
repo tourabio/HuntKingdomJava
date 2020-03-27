@@ -25,12 +25,10 @@ public class HuntKingdom extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-       Parent root = FXMLLoader.load(getClass().getResource("/Gui/Home.fxml"));
+       Parent root = FXMLLoader.load(getClass().getResource("/Gui/AdminHome.fxml"));
         Scene scene = new Scene(root);
-        
+        scene.getStylesheets().add(getClass().getResource("/Style/bootstrap3.css").toExternalForm());
         primaryStage.setScene(scene);
-        
-
         primaryStage.show();
         //stage.setFullScreen(true);
     }

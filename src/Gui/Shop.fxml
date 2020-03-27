@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="Controllers.ShopController">
+<AnchorPane id="AnchorPane" prefHeight="668.0" prefWidth="1055.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminProductController">
    <children>
-      <Label layoutX="134.0" layoutY="89.0" text="Shop" textFill="WHITE" />
+      <Label layoutX="66.0" layoutY="91.0" prefHeight="67.0" prefWidth="233.0" text="assign a reduction : " textFill="WHITE">
+         <font>
+            <Font name="Bernard MT Condensed" size="29.0" />
+         </font>
+      </Label>
+      <TextField fx:id="rate" layoutX="59.0" layoutY="199.0" prefHeight="30.0" prefWidth="246.0" promptText="Rate..." />
+      <DatePicker layoutX="58.0" layoutY="254.0" prefHeight="25.0" prefWidth="246.0" promptText="End Date" />
+      <Button layoutX="153.0" layoutY="322.0" mnemonicParsing="false" onAction="#OnConfirmAction" text="confirm">
+         <styleClass>
+            <String fx:value="success" />
+            <String fx:value="btn" />
+         </styleClass>
+      </Button>
+      <TableView fx:id="table" layoutX="336.0" layoutY="74.0" opacity="0.89" prefHeight="476.0" prefWidth="676.0">
+         <columns>
+            <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="lib_prod" prefWidth="75.0" text="LIBELLE" />
+            <TableColumn fx:id="prix" prefWidth="75.0" text="PRICE" />
+            <TableColumn fx:id="prixFinale" prefWidth="75.0" text="FINAL" />
+            <TableColumn fx:id="description" prefWidth="75.0" text="DESC" />
+            <TableColumn fx:id="qte_prod" prefWidth="75.0" text="QUANTITY" />
+            <TableColumn fx:id="date_ajout" prefWidth="75.0" text="ADDdate" />
+            <TableColumn fx:id="type" prefWidth="75.0" text="TYPE" />
+            <TableColumn fx:id="marque" prefWidth="75.0" text="MARQUE" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>
