@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="mainpane" prefHeight="668.0" prefWidth="1055.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MoyenDeTransportController">
+    <children>
+        <Label layoutX="66.0" layoutY="91.0" prefHeight="67.0" prefWidth="233.0" text="assign a reduction : " textFill="WHITE" visible="false">
+            <font>
+                <Font name="Bernard MT Condensed" size="29.0" />
+            </font>
+        </Label>
+        <TextField fx:id="rate" layoutX="59.0" layoutY="199.0" prefHeight="30.0" prefWidth="246.0" promptText="Rate..." visible="false" />
+        <DatePicker layoutX="58.0" layoutY="254.0" prefHeight="25.0" prefWidth="246.0" promptText="End Date" visible="false" />
+        <Button layoutX="153.0" layoutY="322.0" mnemonicParsing="false" text="confirm" visible="false">
+            <styleClass>
+                <String fx:value="success" />
+                <String fx:value="btn" />
+            </styleClass>
+        </Button>
+        <Button id="addTransport" fx:id="addTransport" layoutX="118.0" layoutY="381.0" mnemonicParsing="false" onAction="#goToAdd" style="-fx-background-color: orange;" text="Add Mean of Transportation" textFill="WHITE">
+            <styleClass>
+                <String fx:value="success" />
+                <String fx:value="btn" />
+            </styleClass>
+        </Button>
+        <TableView fx:id="table" layoutX="336.0" layoutY="74.0" opacity="0.89" prefHeight="476.0" prefWidth="676.0">
+            <columns>
+                <TableColumn id="ID" fx:id="ID" prefWidth="63.0" text="ID" />
+                <TableColumn id="Type" fx:id="Type" prefWidth="127.0" text="Type" />
+                <TableColumn id="Mark" fx:id="Mark" prefWidth="127.0" text="Mark" />
+                <TableColumn id="Category" fx:id="Category" prefWidth="138.0" text="Category" />
+                <TableColumn id="PricePerDay" fx:id="PricePerDay" prefWidth="100.0" text="Price/Day" />
+                <TableColumn id="Capacity" fx:id="Action" prefWidth="84.0" text="Action" />
+            </columns>
+      </TableView>
+   </children>
+</AnchorPane>

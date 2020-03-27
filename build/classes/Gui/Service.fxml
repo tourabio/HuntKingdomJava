@@ -1,11 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="Controllers.ServiceController">
+<AnchorPane id="AnchorPane" fx:id="mainpane" prefHeight="668.0" prefWidth="1055.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ServiceController">
    <children>
-      <Label layoutX="114.0" layoutY="87.0" text="Service" textFill="WHITE" />
+        <Label layoutX="66.0" layoutY="91.0" prefHeight="67.0" prefWidth="233.0" text="assign a reduction : " textFill="WHITE" visible="false">
+            <font>
+                <Font name="Bernard MT Condensed" size="29.0" />
+            </font>
+        </Label>
+        <TextField fx:id="rate" layoutX="59.0" layoutY="199.0" prefHeight="30.0" prefWidth="246.0" promptText="Rate..." visible="false" />
+        <DatePicker layoutX="58.0" layoutY="254.0" prefHeight="25.0" prefWidth="246.0" promptText="End Date" visible="false" />
+        <Button layoutX="153.0" layoutY="322.0" mnemonicParsing="false" text="confirm" visible="false">
+            <styleClass>
+                <String fx:value="success" />
+                <String fx:value="btn" />
+            </styleClass>
+        </Button>
+        <Button id="addHebergement" fx:id="addHebergement" layoutX="118.0" layoutY="381.0" mnemonicParsing="false" onAction="#goToAdd" style="-fx-background-color: orange;" text="Add Accommodation" textFill="WHITE">
+            <styleClass>
+                <String fx:value="success" />
+                <String fx:value="btn" />
+            </styleClass>
+        </Button>
+        <TableView fx:id="table" layoutX="336.0" layoutY="74.0" opacity="0.89" prefHeight="476.0" prefWidth="676.0">
+            <columns>
+                <TableColumn id="ID" fx:id="ID" prefWidth="34.0" text="ID" />
+                <TableColumn id="Type" fx:id="Category" prefWidth="67.0" text="Category" />
+                <TableColumn id="PricePerDay" fx:id="PricePerDay" prefWidth="77.0" text="Price/Day" />
+                <TableColumn id="Address" fx:id="Address" prefWidth="119.0" text="Address" />
+                <TableColumn id="NbRooms" fx:id="NbRooms" prefWidth="69.0" text="Nb Rooms" />
+                <TableColumn id="Capacity" fx:id="Capacity" prefWidth="54.0" text="Capacity" />
+                <TableColumn id="Capacity" fx:id="Description" prefWidth="191.0" text="Description" />
+                <TableColumn id="Capacity" fx:id="Description1" prefWidth="64.0" text="Action" />
+            </columns>
+      </TableView>
    </children>
 </AnchorPane>
