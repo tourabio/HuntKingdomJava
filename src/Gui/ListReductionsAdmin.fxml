@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="668.0" prefWidth="1055.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ListReductionsAdminController">
+   <children>
+      <Button fx:id="return1" layoutX="141.0" layoutY="287.0" mnemonicParsing="false" onAction="#OnReturnAction" text="Return">
+         <styleClass>
+            <String fx:value="primary" />
+            <String fx:value="btn" />
+         </styleClass>
+      </Button>
+      <TableView fx:id="table" layoutX="336.0" layoutY="74.0" opacity="0.89" prefHeight="476.0" prefWidth="403.0">
+         <columns>
+            <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="rate" prefWidth="75.0" text="rate" />
+            <TableColumn fx:id="start" prefWidth="97.0" text="START DATE" />
+            <TableColumn fx:id="end" prefWidth="79.0" text="END DATE" />
+            <TableColumn fx:id="col_action" prefWidth="75.0" text="ACTION" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Produits {
     private int id;
-    private int promotion_id;
+    private int promotion_id=-1;
     private String lib_prod;
     private double prix;
     private double prixFinale;

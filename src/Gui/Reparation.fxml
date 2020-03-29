@@ -1,11 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="Controllers.ReparationController">
+<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1086.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReparationController">
    <children>
-      <Label layoutX="79.0" layoutY="83.0" text="Reparation" textFill="WHITE" />
+      <JFXTabPane fx:id="tabPane" prefHeight="663.0" prefWidth="1080.0">
+         <tabs>
+            <Tab text="Add">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <JFXTextField fx:id="nom" focusColor="BLACK" labelFloat="true" layoutX="145.0" layoutY="111.0" prefHeight="45.0" prefWidth="206.0" promptText="Name" unFocusColor="#d7af42">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font></JFXTextField>
+                        <JFXComboBox fx:id="categorie" focusColor="BLACK" labelFloat="true" layoutX="142.0" layoutY="189.0" prefHeight="36.0" prefWidth="210.0" promptText="Select cayegory" unFocusColor="#d7af42" />
+                        <JFXTextArea fx:id="description" focusColor="BLACK" labelFloat="true" layoutX="137.0" layoutY="285.0" prefHeight="162.0" prefWidth="221.0" promptText="Description" unFocusColor="#d7af42">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </JFXTextArea>
+                        <Button fx:id="chooseBtn" layoutX="142.0" layoutY="487.0" mnemonicParsing="false" onAction="#chooseImage" prefHeight="37.0" prefWidth="113.0" text="Choose image">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <ListView fx:id="listView" layoutX="137.0" layoutY="545.0" prefHeight="35.0" prefWidth="200.0" />
+                        <JFXButton fx:id="addBtn" buttonType="RAISED" layoutX="702.0" layoutY="305.0" onAction="#addPiece" prefHeight="52.0" prefWidth="147.0" ripplerFill="#ffdd88" style="-fx-background-color: green;" text="Add" textFill="WHITE" />
+                        <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="415.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true" />
+                        <StackPane fx:id="stack" layoutX="577.0" layoutY="90.0" prefHeight="145.0" prefWidth="384.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="List">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <FlowPane fx:id="flow" opacity="0.67" prefHeight="626.0" prefWidth="1080.0">
+                           <children>
+                              <StackPane fx:id="stack2" prefHeight="295.0" prefWidth="435.0" />
+                           </children></FlowPane>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
    </children>
 </AnchorPane>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -7,21 +9,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="668.0" prefWidth="1055.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminProductController">
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="668.0" prefWidth="1055.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminProductController">
    <children>
       <Label layoutX="66.0" layoutY="91.0" prefHeight="67.0" prefWidth="233.0" text="assign a reduction : " textFill="WHITE">
          <font>
             <Font name="Bernard MT Condensed" size="29.0" />
          </font>
       </Label>
-      <TextField fx:id="rate" layoutX="59.0" layoutY="199.0" prefHeight="30.0" prefWidth="246.0" promptText="Rate..." />
-      <DatePicker layoutX="58.0" layoutY="254.0" prefHeight="25.0" prefWidth="246.0" promptText="End Date" />
-      <Button layoutX="153.0" layoutY="322.0" mnemonicParsing="false" onAction="#OnConfirmAction" text="confirm">
-         <styleClass>
-            <String fx:value="success" />
-            <String fx:value="btn" />
-         </styleClass>
-      </Button>
+      <TextField fx:id="rate" layoutX="59.0" layoutY="334.0" prefHeight="30.0" prefWidth="246.0" promptText="Rate..." />
+      <DatePicker fx:id="endDate" layoutX="60.0" layoutY="412.0" prefHeight="25.0" prefWidth="246.0" promptText="End Date" />
       <TableView fx:id="table" layoutX="336.0" layoutY="74.0" opacity="0.89" prefHeight="476.0" prefWidth="676.0">
          <columns>
             <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
@@ -35,5 +31,8 @@
             <TableColumn fx:id="marque" prefWidth="75.0" text="MARQUE" />
          </columns>
       </TableView>
+      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="82.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true" />
+      <JFXButton fx:id="reductionBtn" buttonType="RAISED" layoutX="183.0" layoutY="478.0" onAction="#OnShowReductionAction" prefHeight="46.0" prefWidth="107.0" ripplerFill="#feffaf" style="-fx-background-color: orange;" text="Reduction" textFill="WHITE" />
+      <JFXButton fx:id="reductionBtn1" buttonType="RAISED" layoutX="66.0" layoutY="478.0" onAction="#OnConfirmAction" prefHeight="46.0" prefWidth="107.0" ripplerFill="#feffaf" style="-fx-background-color: green;" text="Confirm" textFill="WHITE" />
    </children>
 </AnchorPane>
