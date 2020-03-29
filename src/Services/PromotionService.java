@@ -94,8 +94,27 @@ public class PromotionService {
             String requete = "DELETE FROM promotion WHERE dateFin < ?";
                PreparedStatement pst = cnx2.prepareStatement(requete);
             pst.setDate(1, sqlDate);//index starts with 1 for the first value
-            pst.executeUpdate();
+           int nb =  pst.executeUpdate();
+           if (nb>0)
             System.out.println("ended promotion deleted succesfully ! ");
+        
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+
+    }
+      public void modifierPromotion(Promotion p) {
+        try {
+            java.sql.Date sqlDate = new java.sql.Date(p.getDateFin().getTime());
+            String requete = "UPDATE promotion SET taux = ?, dateFin = ? WHERE id = ?";
+               PreparedStatement pst = cnx2.prepareStatement(requete);
+            pst.setDouble(1, p.getTaux());
+            pst.setDate(2, sqlDate); 
+            pst.setInt(3, p.getId());
+            int nb =  pst.executeUpdate();
+           if (nb>0)
+            System.out.println("promotion updated succesfully ! ");
         
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

@@ -27,6 +27,11 @@ public class Promotion {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
     }
+    public Promotion( int id,double taux,Date dateFin) {
+        this.id=id;
+        this.taux = taux;
+        this.dateFin = dateFin;
+    }
     public Promotion( double taux, Date dateDebut, Date dateFin) {
         this.taux = taux;
         this.dateDebut = dateDebut;

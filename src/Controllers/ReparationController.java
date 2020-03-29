@@ -93,7 +93,6 @@ public class ReparationController implements Initializable {
         //prixdesc = FXCollections.observableArrayList((ArrayList) annonceService.trierParPrixDESC());
         //indice = 0;
         Node[] nodes = new Node[obsl.size()];
-        System.out.println(obsl.size());
         for (int i = 0; i < nodes.length; i++) {
             if(pieces.get(i).isReserved()){
             try {    
@@ -214,6 +213,7 @@ public class ReparationController implements Initializable {
             ps.ajouterPiece(p);
             System.out.println(p);
             SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+            
             selectionModel.select(1); //select by index starting with 0
 
         }

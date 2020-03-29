@@ -21,7 +21,6 @@ import java.util.List;
  *
  * @author asus_pc
  */
-
 public class ProduitService {
 
     Connection cnx2;
@@ -29,7 +28,8 @@ public class ProduitService {
     public ProduitService() {
         cnx2 = MyConnection.getInstance().getCnx();
     }
-/*
+
+    /*
     public void ajouterProduit(Produits p) {
            String requete = "INSERT INTO produit (nom,categorie,description,image,userid) values(?,?,?,?,?)";
         try {
@@ -53,7 +53,7 @@ public class ProduitService {
             String requete = "SELECT * FROM produit";
             //executeQuery seulement pour select 
             ResultSet rs = st.executeQuery(requete);
-            while(rs.next()){
+            while (rs.next()) {
                 Produits p = new Produits();
                 p.setId(rs.getInt(1));
                 p.setPromotion_id(rs.getInt(2));
@@ -76,7 +76,7 @@ public class ProduitService {
         return myList;
     }
 
-/*
+    /*
      public void supprimerPersonne(int id) {
         try {
             String requete = "DELETE FROM piecesdefectueuses WHERE id = ?";
@@ -91,7 +91,7 @@ public class ProduitService {
         }
 
     }*/
-    /*
+ /*
      public void modifierPiece(Piecesdefectueuses p) {
         try {
             String requete = "UPDATE piecesdefectueuses SET nom = ?, categorie = ?, description = ?, image = ? WHERE id = ?";
@@ -110,65 +110,73 @@ public class ProduitService {
         }
 
     }*/
-    
-    public void ReductPiece(Produits p, Promotion promo ) {
+    public void ReductPiece(int id, double taux) {
         try {
             String requete = "UPDATE produit SET prixFinale = prix - prix * ? WHERE id = ?";
-               PreparedStatement pst = cnx2.prepareStatement(requete);
-            pst.setDouble(1, promo.getTaux());
-            pst.setInt(2, p.getId()); 
-            pst.executeUpdate();
-            System.out.println("product reduced succesfully ! ");
-        
+            PreparedStatement pst = cnx2.prepareStatement(requete);
+            pst.setDouble(1, taux);
+            pst.setInt(2, id);
+            int nb = pst.executeUpdate();
+            if (nb > 0) {
+                System.out.println("product reduced succesfully ! ");
+            }
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
 
         }
-          try {
+        try {
             String requete = "UPDATE produit SET promotion_id = ? WHERE id = ?";
-               PreparedStatement pst = cnx2.prepareStatement(requete);
-            pst.setInt(1, p.getId());
-            pst.setInt(2, p.getId()); 
-            pst.executeUpdate();
-            System.out.println("product reduction added succesfully ! ");
-        
+            PreparedStatement pst = cnx2.prepareStatement(requete);
+            pst.setInt(1, id);
+            pst.setInt(2, id);
+            int nb = pst.executeUpdate();
+            if (nb > 0) {
+                System.out.println("product reduction added succesfully ! ");
+            }
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
 
         }
 
     }
-    public void deletePromotion(int id ){
+
+   
+
+    public void deletePromotion(int id) {
         try {
             String requete = "UPDATE produit SET promotion_id = -1,prixFinale = prix WHERE id = ?";
-               PreparedStatement pst = cnx2.prepareStatement(requete);
-            pst.setInt(1,id);
+            PreparedStatement pst = cnx2.prepareStatement(requete);
+            pst.setInt(1, id);
             pst.executeUpdate();
             System.out.println("reduction deleted from product succesfully ! ");
-        
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
 
         }
 
     }
-     public void deletePromotionFini(){
-          Date current_date = new Date();
-         java.sql.Date sqlDate = new java.sql.Date(current_date.getTime());
+
+    public void deletePromotionFini() {
+        Date current_date = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(current_date.getTime());
         try {
             String requete = "UPDATE produit SET prixFinale = prix,promotion_id = -1 where promotion_id = (select id from promotion where dateFin < ?) ";
-               PreparedStatement pst = cnx2.prepareStatement(requete);
-            pst.setDate(1,sqlDate);
-            pst.executeUpdate();
-            System.out.println("Ended reduction deleted from product succesfully ! ");
-        
+            PreparedStatement pst = cnx2.prepareStatement(requete);
+            pst.setDate(1, sqlDate);
+            int nb = pst.executeUpdate();
+            if (nb > 0) {
+                System.out.println("Ended reduction deleted from product succesfully ! ");
+            }
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
 
         }
 
     }
-        
-    }
+   
 
-
+}

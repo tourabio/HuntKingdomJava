@@ -198,7 +198,7 @@ public class AdminProductController implements Initializable {
                 PromotionService Spromo = new PromotionService();
                 Spromo.ajouterPromotion(promo,p.getId());
                 ProduitService ps = new ProduitService();
-                ps.ReductPiece(p,promo);
+                ps.ReductPiece(p.getId(),promo.getTaux());
                 list.clear();
                 list = FXCollections.observableArrayList(
                     ps.afficherProduits()

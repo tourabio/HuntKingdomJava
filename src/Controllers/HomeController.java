@@ -94,5 +94,10 @@ public class HomeController implements Initializable {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/Gui/Reparation.fxml"));
         mainpane.getChildren().setAll(pane);
     }
+     @FXML
+    private void btnreparateurAction(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/Gui/Reparateur.fxml"));
+        mainpane.getChildren().setAll(pane);
+    }
     
 }
