@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -111,6 +112,39 @@ public class PieceService {
 
         }
 
+    }
+     public void updateEtat() {
+        try {
+            String requete = "UPDATE piecesdefectueuses SET etat = true where reserved = true and id in (select Piecesdefectueuses_id from reparation where dateFin<?)";
+            PreparedStatement pst = cnx2.prepareStatement(requete);
+            Date current_date = new Date();
+            java.sql.Date dateFin = new java.sql.Date(current_date.getTime());
+            pst.setDate(1, dateFin);
+              int nb =  pst.executeUpdate();
+           if (nb>0)
+            System.out.println("piecesdefectueuses UPDATE etat succesfully ! ");
+
+        } catch (SQLException ex) {
+            System.out.println("error : "+ex.getMessage());
+
+        }
+
+    }
+     public int coutReserved() {
+         int nb = 0 ;
+        try {
+            Statement st = cnx2.createStatement();
+            String requete = "SELECT count(*)as count FROM piecesdefectueuses where reserved=true";
+            //executeQuery seulement pour select 
+            ResultSet rs = st.executeQuery(requete);
+           while(rs.next()){
+             nb = rs.getInt(1);
+             }
+        } catch (SQLException ex) {
+            System.out.println("error : "+ex.getMessage());
+        }
+
+        return nb;
     }
 
 }

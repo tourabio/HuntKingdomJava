@@ -42,13 +42,7 @@
             </Tab>
             <Tab text="List">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <FlowPane fx:id="flow" opacity="0.67" prefHeight="626.0" prefWidth="1080.0">
-                           <children>
-                              <StackPane fx:id="stack2" prefHeight="295.0" prefWidth="435.0" />
-                           </children></FlowPane>
-                     </children></AnchorPane>
+                <AnchorPane fx:id="anchor" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
          </tabs>

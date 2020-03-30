@@ -10,3 +10,25 @@
 .anchore{
     -fx-background-color:chocolate ;
 }
+
+.pagination{
+	-fx-base:black;
+         
+}
+.pagination .toggle-button , .mypage .button{
+	-fx-background-radius:30px;
+	-fx-padding: 0px;
+}
+.pagination .button{
+	-fx-padding: 5 15 5 16px;
+}
+.pagination .label {
+	-fx-text-fill:white;
+}
+.pagination .pagination-control .toggle-button:selected {   
+       -fx-background-color:chocolate;
+}
+.pagination .pagination-control .button, .pagination .toggle-button {
+       -fx-pref-width: 50;
+       -fx-pref-height: 50;
+}

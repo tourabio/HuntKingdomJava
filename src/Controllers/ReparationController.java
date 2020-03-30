@@ -16,6 +16,7 @@ import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -34,16 +36,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.util.Callback;
+import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
@@ -54,8 +62,7 @@ public class ReparationController implements Initializable {
 
     @FXML
     private StackPane stack;
-     @FXML
-    private StackPane stack2;
+ 
     @FXML
     private JFXTextField nom;
     @FXML
@@ -68,14 +75,22 @@ public class ReparationController implements Initializable {
     private ListView listView;
     @FXML
     private JFXTabPane tabPane;
+     @FXML
+    private AnchorPane anchor;
+     
     private String absolutePath = "";
     
-    @FXML
-    private FlowPane flow;
+    
     @FXML
     private Pane listPane;
     ObservableList<String> list = FXCollections.observableArrayList("Hunting", "Fishing");
+    ArrayList<PiecesDefectueuses> pieces = new ArrayList<>();
+      
 
+    public ReparationController() {
+        PieceService ps =new PieceService();
+        this.pieces = (ArrayList) ps.afficherPiece();
+    }
     /**
      * Initializes the controller class.
      */
@@ -83,16 +98,37 @@ public class ReparationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         categorie.setItems(list);
         PieceService ps= new PieceService();
-        /*signalAnnonceService = new SignalAnnonceService();
-        signalAnnonceService.nbSignalParAnnonce();
-        CardsAnnonceController.i = 0;*/
-        ArrayList<PiecesDefectueuses> pieces = new ArrayList<>();
-        pieces = (ArrayList) ps.afficherPiece();
+        ps.updateEtat();
+        int nbPieceReserved = ps.coutReserved();
         ObservableList<PiecesDefectueuses> obsl = FXCollections.observableArrayList(pieces);
-        //obslsorted = FXCollections.observableArrayList((ArrayList) annonceService.trierParDate())
-        //prixdesc = FXCollections.observableArrayList((ArrayList) annonceService.trierParPrixDESC());
-        //indice = 0;
-        Node[] nodes = new Node[obsl.size()];
+        /******** PAGINATION ***********/
+        Pagination pagination= new Pagination();
+        
+        if(nbPieceReserved%3>0){
+       pagination.setPageCount((nbPieceReserved/3)+1);
+        }
+        else{
+       pagination.setPageCount(nbPieceReserved/3);
+        }
+        
+        pagination.setPageFactory(new Callback<Integer, Node>() {
+             @Override
+            public Node call(Integer pageIndex) {  // every time when you click pagination button this method will be called
+       
+                return createPage(pageIndex,pieces);
+            }
+        });
+       
+    AnchorPane.setTopAnchor(pagination,10.0);
+    AnchorPane.setBottomAnchor(pagination, 10.0);
+    AnchorPane.setRightAnchor(pagination,10.0);
+    AnchorPane.setLeftAnchor(pagination, 10.0);
+    anchor.getChildren().add(pagination);
+       
+        
+       
+        
+        /*Node[] nodes = new Node[obsl.size()];
         for (int i = 0; i < nodes.length; i++) {
             if(pieces.get(i).isReserved()){
             try {    
@@ -110,19 +146,7 @@ public class ReparationController implements Initializable {
                  button.setOnAction(e->{
                      
                     // System.out.println("test");
-                 JFXDialogLayout message = new JFXDialogLayout();
-                 message.setHeading(new Text("Details!"));
-                message.setBody(new Text("your piece is ready !"));
-                JFXDialog msg = new JFXDialog(stack2, message, JFXDialog.DialogTransition.CENTER);
-                JFXButton buttonClose = new JFXButton("close");
-                buttonClose.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        msg.close();
-                    }
-                });
-                message.setActions(buttonClose);
-                msg.show();
+                 
                  });
                  }
                 nodes[i]=root;
@@ -132,11 +156,56 @@ public class ReparationController implements Initializable {
                 e.printStackTrace();
             }
         }
-        }
+        }*/
        
      
         
     }
+       public FlowPane createPage(int index,ArrayList<PiecesDefectueuses> pieces) {
+        FlowPane flow = new FlowPane();
+        Node[] nodes = new Node[4];
+        int nbNode = -1;
+        index++;
+        int n = index+(index-1)*2+1;
+           int deb = n-2;
+           for(int i=deb;i<deb+3;i++){
+               nbNode++;
+        if(pieces.get(i).isReserved()){
+            try {    
+                
+                FXMLLoader loader = new FXMLLoader();
+               
+                Pane root = loader.load(getClass().getResource("/Gui/SinglePiece.fxml").openStream());
+                 SinglePieceController single = (SinglePieceController)loader.getController();
+                 single.getInfo(pieces.get(i));
+                 if(pieces.get(i).isEtat()){
+                 JFXButton button = single.getButton();
+                 button.setText("Ready");
+                 button.setStyle("-fx-background-color: green;");
+                 
+                 button.setOnAction(e->{
+                     
+                    // System.out.println("test");
+                 
+                 });
+                 }
+                nodes[nbNode]=root;
+                //nodes[i] = FXMLLoader.load(getClass().getResource("/Gui/SinglePiece.fxml"));
+                flow.getChildren().add(nodes[nbNode]);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        
+        }
+        
+           }
+        
+         /*  Label lab = new Label("test");
+           
+        flow.getChildren().add(lab);     */   
+        
+        return flow;
+    }  
  
         
         
@@ -211,7 +280,6 @@ public class ReparationController implements Initializable {
             PieceService ps = new PieceService();
             PiecesDefectueuses p = new PiecesDefectueuses(nom.getText(), categorie.getValue(), description.getText(), absolutePath, 1);
             ps.ajouterPiece(p);
-            System.out.println(p);
             SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
             
             selectionModel.select(1); //select by index starting with 0

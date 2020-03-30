@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.testapps.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
@@ -34,5 +36,11 @@
       <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="82.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true" />
       <JFXButton fx:id="reductionBtn" buttonType="RAISED" layoutX="183.0" layoutY="478.0" onAction="#OnShowReductionAction" prefHeight="46.0" prefWidth="107.0" ripplerFill="#feffaf" style="-fx-background-color: orange;" text="Reduction" textFill="WHITE" />
       <JFXButton fx:id="reductionBtn1" buttonType="RAISED" layoutX="66.0" layoutY="478.0" onAction="#OnConfirmAction" prefHeight="46.0" prefWidth="107.0" ripplerFill="#feffaf" style="-fx-background-color: green;" text="Confirm" textFill="WHITE" />
+      <JFXTextField fx:id="search" focusColor="BLACK" labelFloat="true" layoutX="757.0" layoutY="-60.0" prefHeight="30.0" prefWidth="200.0" promptText="Search by libelle" unFocusColor="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXTextField>
+      <FontAwesomeIcon iconName="SEARCH" layoutX="973.0" layoutY="-35.0" size="2em" text="" wrappingWidth="25.0" />
    </children>
 </AnchorPane>

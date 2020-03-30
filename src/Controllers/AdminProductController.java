@@ -10,6 +10,7 @@ import Entities.Promotion;
 import Services.ProduitService;
 import Services.PromotionService;
 import Utils.MyConnection;
+import com.jfoenix.controls.JFXTextField;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -52,6 +53,8 @@ import javafx.stage.Stage;
 public class AdminProductController implements Initializable {
  
     @FXML
+    private JFXTextField search;
+    @FXML
     TableView<Produits> table;
     @FXML
     TableColumn<Produits, Integer> id;
@@ -89,6 +92,28 @@ public class AdminProductController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        list = FXCollections.observableArrayList(
+            ps.afficherProduits()
+        );
+                FilteredList<Produits> filteredData = new FilteredList<>(list, e -> true);
+         search.setOnKeyReleased(e -> {
+            search.textProperty().addListener((ObservableValue, oldValue, newValue) -> {
+                filteredData.setPredicate((Predicate<? super Produits>) produits -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lower = newValue.toLowerCase();
+                    if (produits.getLib_prod().toLowerCase().contains(lower)) {
+                        return true;
+                    }
+
+                    return false;
+                });
+            });
+            SortedList<Produits> sortedData = new SortedList<>(filteredData);
+            sortedData.comparatorProperty().bind(table.comparatorProperty());
+            table.setItems(sortedData);
+        });
         /*** delete ended reductions **/
         ProduitService ps = new ProduitService();
         ps.deletePromotionFini();
